@@ -1,5 +1,13 @@
 <%- include('./partials/header') %>
 
+     <% if (err & err.length>0) { %>
+      <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500">
+        <span class="inline-block mt-1 text-white">
+               <%= error %>
+        </span>
+
+      </div>
+     <% } %>
 
             <div class="w-full h-screen flex px-20">
                 <div class="w-1/2 flex items-center justify-center h-screen">
