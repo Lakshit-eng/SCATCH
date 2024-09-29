@@ -9,8 +9,9 @@ module.exports.registerUser = async (req, res) => {
                                                                        // Joi validation
        const { error } = validateUser(req.body);
        if (error) {
-          console.log("Validation error:", error.message);                      // Debug log
-          return res.status(400).send(error.message);                    // Return Joi validation error
+          console.log("Validation error:", error.message); 
+          req.flash("error", error.message); // Use flash to store the error                     // Debug log
+          return res.redirect("/"); // Redirect back to the index page                   // Return Joi validation error
        }
  
        const { email, fullname, password } = req.body;
@@ -19,7 +20,8 @@ module.exports.registerUser = async (req, res) => {
        let userExists = await userModel.findOne({ email });
        if (userExists) {
           console.log("User already exists:", email);                  // Debug log
-          return res.status(409).send("You already havea an account please login!");
+          req.flash("error", "You already have an account. Please log in!"); // Flash error
+          return res.redirect("/"); // Redirect back to the index page
        }
  
        // Hash password using bcrypt
@@ -38,12 +40,13 @@ module.exports.registerUser = async (req, res) => {
                                                 //now ab mai yha pe generate token use krunga
        let token =  generateToken(user);
        res.cookie("token", token);         //user ke browser pe token set hoga isse
-       res.send("user created successfully");
+       res.redirect("/");
  
  
     } catch (err) {
        console.error("Server error:", err.message); // Debug log
-       return res.status(500).send("Something went wrong on the server."); // Server error response
+       req.flash("error", "Something went wrong on the server.");
+       return res.redirect("/"); // Redirect back to the index page
     }
  }
 
@@ -52,16 +55,25 @@ module.exports.registerUser = async (req, res) => {
 
    let user= await userModel.findOne({email});
    if(!user){
-    return res.send("Incorrect Email or Password");
+      req.flash("error", "Incorrect Email or Password"); // Flash error
+      return res.redirect("/"); // Redirect back to the index page
    }
    bcrypt.compare(password,user.password,function(err,result){
     if(result){
         let  token = generateToken(user);
         res.cookie("token",token);
-        res.send("you can login");
+        res.redirect("/shop");
     }
     else{
-        res.send("Incorrect Email or Password")
+      req.flash("error", "Incorrect Email or Password"); // Flash error
+      return res.redirect("/"); // Redirect back to the index page
     }
    })
  }
+
+ //logout
+
+ module.exports.logout =(req,res)=>{
+   res.cookie("token","");
+   res.redirect("/");
+ };
