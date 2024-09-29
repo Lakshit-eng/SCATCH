@@ -25,8 +25,9 @@ if (process.env.NODE_ENV === "development") {   // this route will always be ava
    })
 }
 
-router.get("/", (req, res) => {
-   res.send("router is working for owners");
+router.get("/admin", (req, res) => {
+   let success =req.flash("success");
+   res.render("createproducts",{success});
 })
 
 
