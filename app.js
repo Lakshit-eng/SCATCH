@@ -11,7 +11,7 @@ const expressSession = require("express-session");
 const flash = require("connect-flash");
 
 require("dotenv").config();
-const port = process.env.PORT ||3000;
+const PORT = process.env.PORT;
  
 //middlewares
 
@@ -37,4 +37,4 @@ app.use("/",indexRouter);
 
 
 
-app.listen(port); 
+app.listen(PORT,()=>console.log("server is running on port:",PORT)); 
