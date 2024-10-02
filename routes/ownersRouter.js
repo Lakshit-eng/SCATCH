@@ -25,10 +25,18 @@ if (process.env.NODE_ENV === "development") {   // this route will always be ava
    })
 }
 
-router.get("/admin", (req, res) => {
+router.get("/login",(req,res)=>{
+   res.render("owner-login");
+})
+
+router.get("/createproduct", (req, res) => {
    let success =req.flash("success");
    res.render("createproducts",{success});
 })
+router.get("/admin",(req,res)=>{
+   res.render("admin");
+})
+
 
 
 module.exports = router;

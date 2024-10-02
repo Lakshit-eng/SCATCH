@@ -11,7 +11,7 @@ const expressSession = require("express-session");
 const flash = require("connect-flash");
 
 require("dotenv").config();
-
+const port = process.env.PORT ||3000;
  
 //middlewares
 
@@ -36,4 +36,5 @@ app.use("/products",productsRouter);
 app.use("/",indexRouter);
 
 
-app.listen(3000); 
+
+app.listen(port); 

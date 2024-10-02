@@ -25,7 +25,7 @@ module.exports.registerUser = async (req, res) => {
        }
  
        // Hash password using bcrypt
-       const salt = await bcrypt.genSalt(10);                    // Use await for better control
+       const salt = await bcrypt.genSalt(10);          // Use await for better control
        const hash = await bcrypt.hash(password, salt); // Await here too
  
        // Create a new user with the hashed password
@@ -39,8 +39,9 @@ module.exports.registerUser = async (req, res) => {
                                                 //now we will setup jwt       
                                                 //now ab mai yha pe generate token use krunga
        let token =  generateToken(user);
-       res.cookie("token", token);         //user ke browser pe token set hoga isse
-       res.redirect("/");
+       res.cookie("token", token); 
+       
+      res.redirect("/"); // Redirect back to the index page
  
  
     } catch (err) {

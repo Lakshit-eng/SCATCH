@@ -9,7 +9,14 @@
     </div>
 <% } %>
 
-            <div class="w-full h-screen flex px-20">
+
+            <div class="w-full h-screen flex px-20 relative">
+
+                <div class="absolute top-5 right-5">
+                    <a href="/owners/login" class="inline-block px-5 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-700 transition duration-300">
+                        Owner Login
+                    </a>
+                    </div>
                 <div class="w-1/2 flex items-center justify-center h-screen">
                     <div class="w-full px-32">
                         <h3 class="text-4xl">welcome to <span class="text-blue-400 font-semibold">Scatch</span></h3>
@@ -24,7 +31,7 @@
                             <input
                                 class="bg-zinc-100 block w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
                                 type="password" placeholder="Password" name="password">
-                            <input class="px-5 rounded-full py-3 mt-2 bg-blue-500 text-white" type="submit"
+                            <input class="px-5 rounded-full py-3 mt-2 bg-blue-500 text-white hover:bg-blue-700 transition duration-300" type="submit"
                                 value="Create My Account">
                         </form>
                     </div>
@@ -39,9 +46,10 @@
                             <input
                                 class="block bg-zinc-100 w-full px-3 py-2 border-[1px] rounded-md mb-3 border-zinc-200"
                                 type="password" placeholder="Password" name="password">
-                            <input class="px-5 block rounded-full py-3 mt-2 bg-blue-500 text-white" type="submit"
+                            <input class="px-5 block rounded-full py-3 mt-2 bg-blue-500 text-white hover:bg-blue-700 transition duration-300" type="submit"
                                 value="Login">
                         </form>
+                        
                     </div>
                 </div>
             </div>
