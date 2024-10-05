@@ -38,4 +38,25 @@ router.get("/logout",isloggedIn,function(req,res){
     res.render("shop");
 })
 
+//remove from cart
+
+router.post("/removefromcart/:productid",isloggedIn,async(req,res)=>{
+    try{
+
+        //find user
+
+        let user = await userModel.findOne({email:req.user.email});
+
+        user.cart = user.cart.findOneAndDelete(req.params.productid);
+        await user.save();
+
+        req.flash("success","Item removed from cart");
+        res.redirect("/cart");
+    }
+    catch(error){
+        req.flash("error","Could not remove items from cart");
+        res.redirect("/cart");
+    }
+})
+
 module.exports= router;
