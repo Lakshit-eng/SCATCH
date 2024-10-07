@@ -24,6 +24,9 @@
         "multer": "^1.4.5-lts.1",
        "shop-it": "file:"
     },
+    "engines": {
+    "node": "20.x"
+  },
     "keywords": [],
     "author": "",
     "license": "ISC"
