@@ -21,10 +21,18 @@
         "joy": "^0.1.1",
         "jsonwebtoken": "^9.0.2",
         "mongoose": "^8.6.3",
+<<<<<<< HEAD
         "multer": "^1.4.5-lts.1",
         "shop-it": "file:"
     },
     "keywords": [],
     "author": "",
     "license": "ISC"
+=======
+        "multer": "^1.4.5-lts.1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC" 
+>>>>>>> 045aa43e434808d7bb4c71d43cbfa53816341c9a
 }
