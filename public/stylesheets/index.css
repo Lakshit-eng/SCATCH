@@ -4,6 +4,16 @@
     box-sizing: border-box;
     font-family:sans-serif;
 }
+.btn{
+    display: flex;
+    justify-content: space-between;
+}
+.btn > a{
+    margin-top: 20px;
+    color: rgb(0, 98, 255);
+}
+
+
 
 
 

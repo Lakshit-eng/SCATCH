@@ -2,7 +2,7 @@ const userModel = require("../models/user-model");
 const { validateUser } = require("../validators/user-validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
-const{generateToken} = require("../utils/generateToken");
+const{generateTokenUser} = require("../utils/generateToken");
 
 module.exports.registerUser = async (req, res) => {
     try {
@@ -38,7 +38,7 @@ module.exports.registerUser = async (req, res) => {
  
                                                 //now we will setup jwt       
                                                 //now ab mai yha pe generate token use krunga
-       let token =  generateToken(user);
+       let token =  generateTokenUser(user);
        res.cookie("token", token); 
        
       res.redirect("/"); // Redirect back to the index page
@@ -61,8 +61,8 @@ module.exports.registerUser = async (req, res) => {
    }
    bcrypt.compare(password,user.password,function(err,result){
     if(result){
-        let  token = generateToken(user);
-        res.cookie("token",token);
+        let  token = generateTokenUser(user);
+        res.cookie("token",token,{ httpOnly: true, secure: true });
         res.redirect("/shop");
     }
     else{
@@ -78,3 +78,5 @@ module.exports.registerUser = async (req, res) => {
    res.cookie("token","");
    res.redirect("/");
  };
+
+ 

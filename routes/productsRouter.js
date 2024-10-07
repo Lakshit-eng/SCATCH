@@ -25,4 +25,10 @@ router.post("/create",upload.single("image"),async (req,res)=>{
  }
 })
 
+router.post("/delete/:id",async(req,res)=>{
+  let productId = req.params.id;
+  let product = await productModel.findByIdAndDelete(productId);
+  res.redirect("/owners/admin");
+})
+
 module.exports = router;

@@ -35,6 +35,8 @@ app.use("/users",usersRouter);
 app.use("/products",productsRouter);
 app.use("/",indexRouter);
 
-
+app.get("/update",(req,res)=>{
+    res.render("Updateproduct");
+})
 
 app.listen(PORT,()=>console.log("server is running on port:",PORT)); 
