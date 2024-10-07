@@ -28,6 +28,7 @@ app.use(
 app.use(flash());
 
 app.use(express.static(path.join(__dirname,"public")));
+
 app.set("view engine","ejs");
 
 app.use("/owners",ownersRouter);
@@ -35,8 +36,6 @@ app.use("/users",usersRouter);
 app.use("/products",productsRouter);
 app.use("/",indexRouter);
 
-app.get("/update",(req,res)=>{
-    res.render("Updateproduct");
-})
+
 
 app.listen(PORT,()=>console.log("server is running on port:",PORT)); 

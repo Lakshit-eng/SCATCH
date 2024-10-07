@@ -1,45 +1,36 @@
 <%- include('./partials/adminHeader.ejs') %>
 
-
-
-<div class="w-full h-screen flex items-start px-20 py-20">
-  <div class="w-[25%] flex h-screen flex-col items-start">
-    <div class="flex flex-col">
-      <a class="block w-fit mb-2" href="/owners/admin">All Products</a>
-      <a class="block w-fit mb-2" href="/owners/createproduct">Create new product</a>
-    </div>
-  </div>
-  <div class="w-[75%] flex flex-col gap-5 h-screen">
-   <span class="text-xl font-medium">All Products -</span>
-    <div class="flex items-start grid grid-cols-4 gap-5">
-
-      <% products.forEach(function(product){ %>
-      <div class="w-60 bg-[<%= product.panelcolor %>]">
-        <div class="w-full h-52 bg-[<%= product.bgcolor %>]">
-          <img class="h-[12rem]" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="">
+<div class="w-full h-screen flex flex-col lg:flex-row px-5 py-5">
+    <div class="lg:w-1/4 flex flex-col items-start p-5">
+        <div class="flex flex-col">
+            <a class="block w-fit mb-2 text-blue-600 hover:underline" href="/owners/admin">All Products</a>
+            <a class="block w-fit mb-2 text-blue-600 hover:underline" href="/owners/createproduct">Create new product</a>
         </div>
-        <div class="flex justify-between items-center px-4 py-4">
-          <div>
-            <h3><%= product.name %></h3>
-            <h4>₹ <%= product.price %></h4>
-          </div>
-            <div>
-                <form action="/products/update/<%= product._id %>" method="POST">
-                    <button type="submit" class="text-blue-600">Update</button>
-                </form>
-                <form action="/products/delete/<%= product._id %>" method="POST">
-                    <button type="submit" class="text-red-600">Delete</button>
-                </form>
+    </div>
+    <div class="lg:w-3/4 flex flex-col gap-5 p-5">
+        <span class="text-xl font-medium">All Products -</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <% products.forEach(function(product) { %>
+            <div class="w-full bg-[<%= product.panelcolor %>] transition-transform duration-300 transform hover:-translate-y-2">
+                <div class="w-full h-52 bg-[<%= product.bgcolor %>]">
+                    <img class="h-full object-cover" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="">
+                </div>
+                <div class="flex justify-between items-center px-4 py-4">
+                    <div>
+                        <h3 class="font-medium"><%= product.name %></h3>
+                        <h4>₹ <%= product.price %></h4>
+                    </div>
+                    <div>
+                        <a class="text-blue-600 hover:underline" href="/products/update/<%= product._id %>">Update</a>
+                        <form action="/products/delete/<%= product._id %>" method="POST" class="inline">
+                            <button type="submit" class="text-red-600 hover:underline">Delete</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-
-          </a>
+            <% }) %>
         </div>
-      </div>
-      <% }) %>
-
     </div>
-
-  </div>
-
 </div>
+
 <%- include('./partials/footer') %>

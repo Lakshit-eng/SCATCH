@@ -1,44 +1,54 @@
 <%- include('./partials/adminHeader.ejs') %>
 
-
-
-            <div class="min-h-screen flex flex-col">
-                <div class="container px-10 py-20 flex flex-grow">
-                    
-                    <main class="w-3/4 bg-white p-8 shadow ml-4">
-                        <h2 class="text-xl font-bold mb-4">Create New Product</h2>
-                        <form action="/products/create" method="post" enctype="multipart/form-data">
-                            <div class="mb-6">
-                                <h3 class="text-lg font-semibold mb-2">Product Details</h3>
-                                <div class="mb-4">
-                                    <label class="block mb-2 font-medium">Product Image</label>
-                                    <input name="image" type="file" class="py-2 px-4 rounded" value="Select File">
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <input name="name" type="text" placeholder="Product Name"
-                                        class="border p-2 rounded w-full">
-                                    <input name="price" type="text" placeholder="Product Price"
-                                        class="border p-2 rounded w-full">
-                                    <input name="discount" type="text" placeholder="Discount Price"
-                                        class="border p-2 rounded w-full">
-                                </div>
-                            </div>
-
-                            <div>
-                                <h3 class="text-lg font-semibold mb-2">Panel Details</h3>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <input name="bgcolor" type="text" placeholder="Background Color"
-                                        class="border p-2 rounded w-full">
-                                    <input name="panelcolor" type="text" placeholder="Panel Color"
-                                        class="border p-2 rounded w-full">
-                                    <input name="textcolor" type="text" placeholder="Text Color"
-                                        class="border p-2 rounded w-full">
-                                </div>
-                            </div>
-                            <input class="px-5 py-2 rounded mt-3 bg-blue-500 text-white" type="submit"
-                                value="Create New Product">
-                        </form>
-                    </main>
+<div class="min-h-screen flex flex-col">
+    <div class="container px-10 py-20 flex flex-grow">
+        <main class="w-3/4 bg-white p-8 shadow ml-4 rounded-lg">
+            <h2 class="text-xl font-bold mb-4">Update Product</h2>
+            <form action="/products/update/<%= product._id %>" method="post" enctype="multipart/form-data">
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-2">Product Details</h3>
+                    <div class="mb-4">
+                        <label class="block mb-2 font-medium">Update Product Image</label>
+                        <input name="image" type="file" class="py-2 px-4 border border-gray-300 rounded w-full">
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input name="name" type="text" placeholder="Product Name" value="<%= product.name %>"
+                            class="border p-2 rounded w-full">
+                        <input name="price" type="text" placeholder="Product Price" value="<%= product.price %>"
+                            class="border p-2 rounded w-full">
+                        <input name="discount" type="text" placeholder="Discount Price" value="<%= product.discount %>"
+                            class="border p-2 rounded w-full">
+                    </div>
                 </div>
-            </div>
-            <%- include('./partials/footer') %>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Panel Details</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Dropdown for Background Color -->
+                        <select name="bgcolor" class="border p-2 rounded w-full">
+                            <option value="">Select Background Color</option>
+                            <option value="#FADCD9">Red</option>
+                            <option value="#B1D4E0">Blue</option>
+                            <option value="#B1D8B7">Green</option>
+                            <option value="#DDDEDC">Black</option>
+                            <!-- Add more color options as needed -->
+                        </select>
+
+                        <!-- Dropdown for Panel Color -->
+                        <select name="panelcolor" class="border p-2 rounded w-full">
+                            <option value="">Select Panel Color</option>
+                            <option value="#F8AFA6">Red</option>
+                            <option value="#2E8BC0">Blue</option>
+                            <option value="#94C973">Green</option>
+                            <option value="#000000">Black</option>
+                            <!-- Add more color options as needed -->
+                        </select>
+                    </div>
+                </div>
+                <input class="px-5 py-2 rounded mt-4 bg-blue-500 text-white hover:bg-blue-600 transition duration-300" type="submit"
+                    value="Update Product">
+            </form>
+        </main>
+    </div>
+</div>
+<%- include('./partials/footer') %>
